@@ -13,9 +13,7 @@
     "isolatedModules": true, // esbuild recomendation
     "esModuleInterop": true,
     "baseUrl": ".",
-    "paths": {
-      "@lib/*": ["lib/*"]
-    }
+    "paths": {}
   },
   "include": ["src/**/*.ts"]
 }
