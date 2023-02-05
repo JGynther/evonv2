@@ -1,2 +1,9 @@
+# General
 .DS_Store
+
+# Node
 node_modules
+
+# Terraform
+.terraform
+terraform.tfstate
