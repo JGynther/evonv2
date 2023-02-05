@@ -3,9 +3,7 @@ import { DynamoDBClient, GetItemCommand } from "@aws-sdk/client-dynamodb";
 
 const client = new DynamoDBClient({ region: process.env.AWS_REGION });
 
-const handler = async (
-  event: APIGatewayProxyEventV2
-): Promise<APIGatewayProxyResultV2> => {
+const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2> => {
   const id = event.rawPath.slice(1); // Remove first '/' from path
 
   const params = {
