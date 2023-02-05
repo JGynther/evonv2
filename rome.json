@@ -5,5 +5,14 @@
     "rules": {
       "recommended": true
     }
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "lineWidth": 100
+  },
+  "files": {
+    "ignore": [
+      "build/*"
+    ]
   }
 }
