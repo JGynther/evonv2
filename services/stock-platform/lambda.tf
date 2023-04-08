@@ -23,3 +23,11 @@ resource "aws_lambda_function" "getStockOfferings" {
     service = "stock-platform"
   }
 }
+
+resource "aws_lambda_permission" "getStockOfferings-apigw" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.getStockOfferings.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.stock-platform-apigw.execution_arn}/*/*"
+}
