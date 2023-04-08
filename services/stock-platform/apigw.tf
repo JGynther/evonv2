@@ -18,6 +18,6 @@ resource "aws_apigatewayv2_integration" "getStockOfferings-integration" {
 
 resource "aws_apigatewayv2_route" "getStockOfferings-route" {
   api_id    = aws_apigatewayv2_api.stock-platform-apigw.id
-  route_key = "GET /offerings"
+  route_key = "GET /api/offerings"
   target    = "integrations/${aws_apigatewayv2_integration.getStockOfferings-integration.id}"
 }
