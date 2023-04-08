@@ -11,6 +11,7 @@ resource "aws_cloudfront_distribution" "stock-platform-cloudfront" {
   }
 
   enabled = true
+  aliases = ["osakeanti.evon.fi"]
 
   // FIXME: this should be changed for s3!
   default_cache_behavior {
@@ -56,10 +57,13 @@ resource "aws_cloudfront_distribution" "stock-platform-cloudfront" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = true
+    acm_certificate_arn = var.acm-certificate-arn
+    ssl_support_method  = "sni-only"
   }
 
   tags = {
     service = "stock-platform"
   }
 }
+
+variable "acm-certificate-arn" {}

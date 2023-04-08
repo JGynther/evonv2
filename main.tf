@@ -28,10 +28,25 @@ resource "aws_s3_bucket_acl" "tfstate" {
   acl    = "private"
 }
 
+// ACM certificate in US-EAST-1
+provider "aws" {
+  alias   = "us-east-1"
+  region  = "us-east-1"
+  profile = "evon"
+}
+
+data "aws_acm_certificate" "evon-certificate" {
+  provider    = aws.us-east-1
+  domain      = "*.evon.fi"
+  types       = ["AMAZON_ISSUED"]
+  most_recent = true
+}
+
 module "go-link" {
   source = "./services/go-link"
 }
 
 module "stock-platform" {
-  source = "./services/stock-platform"
+  source              = "./services/stock-platform"
+  acm-certificate-arn = data.aws_acm_certificate.evon-certificate.arn
 }
