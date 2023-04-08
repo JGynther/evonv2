@@ -1,0 +1,16 @@
+{
+  "name": "stock-platform",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.264.0",
+    "@aws-sdk/lib-dynamodb": "^3.303.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.110",
+    "@types/node": "^18.11.19",
+    "esbuild": "^0.17.5"
+  }
+}

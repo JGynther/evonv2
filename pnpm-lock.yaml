@@ -23,6 +23,21 @@ importers:
       esbuild: 0.17.5
       typescript: 4.9.5
 
+  services/stock-platform:
+    specifiers:
+      '@aws-sdk/client-dynamodb': ^3.264.0
+      '@aws-sdk/lib-dynamodb': ^3.303.0
+      '@types/aws-lambda': ^8.10.110
+      '@types/node': ^18.11.19
+      esbuild: ^0.17.5
+    dependencies:
+      '@aws-sdk/client-dynamodb': 3.264.0
+      '@aws-sdk/lib-dynamodb': 3.303.0_wklx2fj5pyfmjpplsye3amrq3i
+    devDependencies:
+      '@types/aws-lambda': 8.10.110
+      '@types/node': 18.11.19
+      esbuild: 0.17.5
+
 packages:
 
   /@aws-crypto/ie11-detection/3.0.0:
@@ -385,6 +400,19 @@ packages:
       tslib: 2.5.0
     dev: false
 
+  /@aws-sdk/lib-dynamodb/3.303.0_wklx2fj5pyfmjpplsye3amrq3i:
+    resolution: {integrity: sha512-UHgvaAJKiA1oqL0jHR4Ml+fUXlHET/w8WqyxydNjJBnAVKqauKB+VrL5lCyTzBmE4sdqOkUEtYX1b8+3eZw7hA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@aws-sdk/client-dynamodb': ^3.0.0
+      '@aws-sdk/smithy-client': ^3.0.0
+      '@aws-sdk/types': ^3.0.0
+    dependencies:
+      '@aws-sdk/client-dynamodb': 3.264.0
+      '@aws-sdk/util-dynamodb': 3.303.0
+      tslib: 2.5.0
+    dev: false
+
   /@aws-sdk/middleware-content-length/3.257.0:
     resolution: {integrity: sha512-yiawbV2azm6QnMY1L2ypG8PDRdjOcEIvFmT0T7y0F49rfbKJOu21j1ONAoCkLrINK6kMqcD5JSQLVCoURxiTxQ==}
     engines: {node: '>=14.0.0'}
@@ -678,6 +706,13 @@ packages:
       '@aws-sdk/node-config-provider': 3.259.0
       '@aws-sdk/property-provider': 3.257.0
       '@aws-sdk/types': 3.257.0
+      tslib: 2.5.0
+    dev: false
+
+  /@aws-sdk/util-dynamodb/3.303.0:
+    resolution: {integrity: sha512-OTKcww7nY6PTm2N5KH/nhMXgEnX4nU3PyWpcZ00bi1rY2gKODIoDewBgPbc9jB1No9ABTELnP/NUknle3S386A==}
+    engines: {node: '>=14.0.0'}
+    dependencies:
       tslib: 2.5.0
     dev: false
 

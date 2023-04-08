@@ -16,8 +16,6 @@ provider "aws" {
   profile = "evon"
 }
 
-
-
 resource "aws_s3_bucket" "tfstate" {
   bucket = "evon-tfstate"
   tags = {
@@ -32,4 +30,8 @@ resource "aws_s3_bucket_acl" "tfstate" {
 
 module "go-link" {
   source = "./services/go-link"
+}
+
+module "stock-platform" {
+  source = "./services/stock-platform"
 }
