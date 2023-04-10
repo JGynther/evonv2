@@ -1,6 +1,6 @@
 data "archive_file" "getStockOfferings" {
-  source_file = "services/stock-platform//build/getStockOfferings.js"
-  output_path = "services/stock-platform//build/getStockOfferings.zip"
+  source_file = "services/stock-platform/backend/build/getStockOfferings.js"
+  output_path = "services/stock-platform/backend/build/getStockOfferings.zip"
   type        = "zip"
 }
 
@@ -12,8 +12,8 @@ resource "aws_lambda_function" "getStockOfferings" {
   }
 
   function_name    = "getStockOfferings"
-  filename         = "services/stock-platform/build/getStockOfferings.zip"
-  handler          = "services/stock-platform/getStockOfferings.handler"
+  filename         = "services/stock-platform/backend/build/getStockOfferings.zip"
+  handler          = "services/stock-platform/backend/getStockOfferings.handler"
   source_code_hash = data.archive_file.getStockOfferings.output_base64sha256
   runtime          = "nodejs18.x"
   architectures    = ["arm64"]
