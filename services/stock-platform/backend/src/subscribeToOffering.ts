@@ -49,6 +49,8 @@ const createConfirmationEmail = (id: string, email: string, otp: string) => {
     <p>Olemme vastaanottaneet merkintäsi Evon Capital Oy Ab:n osakeannissa. Merkintäsi vaatii vielä vahvistuksen.</p>
     <p>Vahvista merkintäsi oheisen linkin kautta: </p>
     <a href="https://osakeanti.evon.fi/confirm/${id}/${email}::${otp}">Vahvista merkintä</a>
+    <br>
+    <p>Ystävällisin terveisin, &nbsp Evon Capitalin tiimi</p>
   `;
 };
 

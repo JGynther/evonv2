@@ -31,7 +31,7 @@ resource "aws_cloudfront_distribution" "stock-platform-cloudfront" {
 
   ordered_cache_behavior {
     path_pattern     = "/api/*"
-    allowed_methods  = ["GET", "HEAD"]
+    allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "stock-platform-apigw"
 

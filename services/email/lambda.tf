@@ -16,3 +16,7 @@ resource "aws_lambda_function" "sendSingleEmail" {
     service = "email"
   }
 }
+
+output "email-lambda-arn" {
+  value = aws_lambda_function.sendSingleEmail.arn
+}

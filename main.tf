@@ -42,6 +42,10 @@ data "aws_acm_certificate" "evon-certificate" {
   most_recent = true
 }
 
+module "email" {
+  source = "./services/email"
+}
+
 module "go-link" {
   source = "./services/go-link"
 }
@@ -49,8 +53,5 @@ module "go-link" {
 module "stock-platform" {
   source              = "./services/stock-platform"
   acm-certificate-arn = data.aws_acm_certificate.evon-certificate.arn
-}
-
-module "email" {
-  source = "./services/email"
+  email-lambda-arn    = module.email.email-lambda-arn
 }

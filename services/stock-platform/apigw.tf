@@ -21,3 +21,16 @@ resource "aws_apigatewayv2_route" "getStockOfferings-route" {
   route_key = "GET /api/offerings"
   target    = "integrations/${aws_apigatewayv2_integration.getStockOfferings-integration.id}"
 }
+
+resource "aws_apigatewayv2_integration" "subscribeToOffering-integration" {
+  api_id                 = aws_apigatewayv2_api.stock-platform-apigw.id
+  integration_type       = "AWS_PROXY"
+  integration_uri        = aws_lambda_function.subscribeToOffering.invoke_arn
+  payload_format_version = "2.0"
+}
+
+resource "aws_apigatewayv2_route" "subscribeToOffering-route" {
+  api_id    = aws_apigatewayv2_api.stock-platform-apigw.id
+  route_key = "POST /api/subscribe"
+  target    = "integrations/${aws_apigatewayv2_integration.subscribeToOffering-integration.id}"
+}
