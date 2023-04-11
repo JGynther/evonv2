@@ -50,3 +50,7 @@ module "stock-platform" {
   source              = "./services/stock-platform"
   acm-certificate-arn = data.aws_acm_certificate.evon-certificate.arn
 }
+
+module "email" {
+  source = "./services/email"
+}

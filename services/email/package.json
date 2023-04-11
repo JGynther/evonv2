@@ -1,0 +1,16 @@
+{
+  "name": "email",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.310.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.110",
+    "@types/node": "^18.11.19",
+    "esbuild": "^0.17.5",
+    "typescript": "^5.0.4"
+  }
+}
