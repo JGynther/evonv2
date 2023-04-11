@@ -23,7 +23,13 @@ resource "aws_dynamodb_table" "stock-subscriptions" {
     type = "S"
   }
 
-  hash_key = "id"
+  attribute {
+    name = "email"
+    type = "S"
+  }
+
+  hash_key  = "id"
+  range_key = "email"
 
   tags = {
     service = "stock-platform"
