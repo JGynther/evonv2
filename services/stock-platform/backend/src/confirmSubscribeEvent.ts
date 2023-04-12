@@ -24,8 +24,8 @@ const ddbUpdateItem = async (
   await client.update({
     Key,
     TableName,
-    UpdateExpression: "set #s = :confirmed",
-    ExpressionAttributeValues: { ":confirmed": "confirmed" },
+    UpdateExpression: "set #s = :confirmed, confirmedAt = :confirmedAt",
+    ExpressionAttributeValues: { ":confirmed": "confirmed", ":confirmedAt": Date.now() },
     ExpressionAttributeNames: { "#s": "state" },
   });
 };
