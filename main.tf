@@ -55,3 +55,8 @@ module "stock-platform" {
   acm-certificate-arn = data.aws_acm_certificate.evon-certificate.arn
   email-lambda-arn    = module.email.email-lambda-arn
 }
+
+module "cdn" {
+  source              = "./services/cdn"
+  acm-certificate-arn = data.aws_acm_certificate.evon-certificate.arn
+}
