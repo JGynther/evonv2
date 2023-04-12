@@ -34,3 +34,16 @@ resource "aws_apigatewayv2_route" "subscribeToOffering-route" {
   route_key = "POST /api/subscribe"
   target    = "integrations/${aws_apigatewayv2_integration.subscribeToOffering-integration.id}"
 }
+
+resource "aws_apigatewayv2_integration" "confirmSubscribeEvent-integration" {
+  api_id                 = aws_apigatewayv2_api.stock-platform-apigw.id
+  integration_type       = "AWS_PROXY"
+  integration_uri        = aws_lambda_function.confirmSubscribeEvent.invoke_arn
+  payload_format_version = "2.0"
+}
+
+resource "aws_apigatewayv2_route" "confirmSubscribeEvent-route" {
+  api_id    = aws_apigatewayv2_api.stock-platform-apigw.id
+  route_key = "POST /api/confirm"
+  target    = "integrations/${aws_apigatewayv2_integration.confirmSubscribeEvent-integration.id}"
+}
