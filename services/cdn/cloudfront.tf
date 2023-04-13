@@ -12,8 +12,9 @@ resource "aws_cloudfront_distribution" "cdn" {
     origin_access_control_id = aws_cloudfront_origin_access_control.oac.id
   }
 
-  enabled = true
-  aliases = ["cdn.evon.fi"]
+  enabled     = true
+  aliases     = ["cdn.evon.fi"]
+  price_class = "PriceClass_100"
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
