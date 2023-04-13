@@ -44,13 +44,58 @@ const ddbPutItemNoReplace = async (
   });
 };
 
-const createConfirmationEmail = (id: string, email: string, otp: string) => {
+const createConfirmationEmail = (
+  id: string,
+  email: string,
+  otp: string,
+  subscriber: Record<string, any>,
+  count: number,
+  sum: number,
+) => {
   return `
-    <p>Olemme vastaanottaneet merkintäsi Evon Capital Oy Ab:n osakeannissa. Merkintäsi vaatii vielä vahvistuksen.</p>
-    <p>Vahvista merkintäsi oheisen linkin kautta: </p>
-    <a href="https://osakeanti.evon.fi/confirm/${id}/${email}::${otp}">Vahvista merkintä</a>
-    <br>
-    <p>Ystävällisin terveisin, &nbsp Evon Capitalin tiimi</p>
+    <html>
+      <head>
+        <meta name="viewport" content="width=device-width" />
+        <meta http-equiv="Content-Type" content="text/html" charset=UTF-8" />
+      </head>
+      <body> 
+        <p>Olemme vastaanottaneet merkintäsi Evon Capital Oy Ab:n osakeannissa. Merkintäsi vaatii vielä vahvistuksen.</p>
+        <p>Vahvista merkintäsi oheisen linkin kautta: </p>
+        <a href="https://osakeanti.evon.fi/confirm/${id}/${email}::${otp}">Vahvista merkintä</a>
+        <br>
+        <br>
+        <h3>Merkkinnän tiedot</h3>
+        <ul>
+          <p>${subscriber.firstName} ${subscriber?.middleNames} ${subscriber.lastName}</p>
+          <p>${email}</p>
+          <p>${subscriber.birthDate}</p>
+          <p>${subscriber.address.street}</p>
+          <p>${subscriber.address.postalCode}, ${subscriber.address.city}</p>
+          <p>Osakkeita ${count} kappaletta</p>
+          <p>Maksettavaa yhteensä ${sum} EUR</p>
+        </ul>
+        <br>
+        <h3>Maksuohjeet</h3>
+        <h4>Saaja</h4>
+        <ul>
+          <p>Evon Capital Oy Ab</p>
+          <p>Rauhankatu 2F 69, 13100, HÄMEENLINNA, FINLAND</p>
+          <p>Y-tunnus: 3094125-8</p>
+        </ul>
+        <h4>Maksutiedot</h4>
+        <ul>
+          <p>Pankki: OP</p>
+          <p>BIC: OKOYFIHH</p>
+          <p>IBAN: FI06 5720 1020 5628 52</p>
+          <p>Eräpäivä: 4.8.2023</p>
+          <p>Viesti: ${subscriber.firstName} ${subscriber.lastName}</p>
+          <p>Maksettava: ${sum} EUR</p>
+        </ul>
+        <br>
+        <p>Ystävällisin terveisin,</p>
+        <p> Evon Capitalin tiimi</p>
+      </body>
+    </html>
   `;
 };
 
@@ -66,12 +111,13 @@ const handler = async (event: APIGatewayProxyEventV2) => {
   if (!config) return createError(400, "Invalid request.");
 
   const otp = randomUUID();
+  const sum = (config?.price * count).toFixed(2);
 
   const subscribe = {
     id: config.id,
     timestamp: event.requestContext.timeEpoch,
-    sum: config?.price * count || 0,
     state: "pending",
+    sum,
     otp,
     email,
     count,
@@ -90,7 +136,7 @@ const handler = async (event: APIGatewayProxyEventV2) => {
     await sendSingleEmail({
       email: email,
       subject: "Evon Capital Oy Ab - Osakeannin merkintä",
-      html: createConfirmationEmail(config.id, email, otp),
+      html: createConfirmationEmail(config.id, email, otp, subscriber, count, sum),
     });
   } catch (error) {
     return createError(400, "Confirmation email send failed.");
