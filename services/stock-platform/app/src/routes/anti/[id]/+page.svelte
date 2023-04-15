@@ -78,17 +78,17 @@
       <p>Minimimerkintä: {config.min} kpl</p>
     </div>
     <div class="text-white text-opacity-80">
-      <p class="mb-2">
+      <p class="mb-4">
         Antiin liittyvät dokumentit. Tutustu näihin erityisellä huolella.
       </p>
-      <ul>
+      <ul class="space-y-4">
         {#each config.documents as document}
           <li>
             <a
               href={document}
               target="_blank"
               rel="noopener"
-              class="border border-neutral-700 bg-neutral-800 rounded py-1 px-2 max-w-min"
+              class="border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 transition rounded py-1 px-2 max-w-min"
               >{document.split("/").slice(-1)}</a
             >
           </li>
