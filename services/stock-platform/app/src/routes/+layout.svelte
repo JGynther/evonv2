@@ -4,8 +4,12 @@
 
 <div class="bg-neutral-900 text-white min-h-screen flex flex-col items-center">
   <header class="border-b border-neutral-700 w-full mb-10 px-10 py-6">
-    <a href="/" class="text-xl font-serif tracking-widest uppercase">
-      Osakeannit — Evon Capital
+    <a
+      href="/"
+      class="text-xl font-serif tracking-widest uppercase flex items-center space-x-5"
+    >
+      <img src="/logo.webp" alt="Evon Capital logo" class="w-14" />
+      <p>Osakeannit — Evon Capital</p>
     </a>
   </header>
   <div class="container max-w-screen-md px-5 flex-grow">
