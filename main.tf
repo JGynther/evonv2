@@ -47,7 +47,8 @@ module "email" {
 }
 
 module "go-link" {
-  source = "./services/go-link"
+  source              = "./services/go-link"
+  acm-certificate-arn = data.aws_acm_certificate.evon-certificate.arn
 }
 
 module "stock-platform" {

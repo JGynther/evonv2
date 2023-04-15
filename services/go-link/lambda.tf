@@ -24,3 +24,11 @@ resource "aws_lambda_function" "getLongUrlRedirect" {
     service = "go-link"
   }
 }
+
+resource "aws_lambda_permission" "getLongUrlRedirectt-apigw" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.getLongUrlRedirect.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.go-link-apigw.execution_arn}/*/*"
+}
