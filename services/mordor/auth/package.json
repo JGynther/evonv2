@@ -1,0 +1,14 @@
+{
+  "name": "auth",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sso": "^3.319.0",
+    "@aws-sdk/client-sso-oidc": "^3.319.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.17.5"
+  }
+}
