@@ -2,6 +2,7 @@ import {
   SSOOIDCClient,
   RegisterClientCommand,
   StartDeviceAuthorizationCommand,
+  CreateTokenCommand,
 } from "@aws-sdk/client-sso-oidc";
 
 import type {
@@ -26,10 +27,27 @@ async function authorizeDevice(clientInfo: RegisterClientCommandOutput) {
   const command = new StartDeviceAuthorizationCommand({
     clientId,
     clientSecret,
-    startUrl: "https://d-c36711cab6.awsapps.com/start/",
+    startUrl: process.env.URL,
   });
 
   return await client.send(command);
 }
 
-export { registerClient, authorizeDevice };
+async function createToken(
+  clientInfo: RegisterClientCommandOutput,
+  authorizationInfo: StartDeviceAuthorizationCommandOutput,
+) {
+  const { clientId, clientSecret } = clientInfo;
+  const { deviceCode } = authorizationInfo;
+
+  const command = new CreateTokenCommand({
+    clientId,
+    clientSecret,
+    deviceCode,
+    grantType: "urn:ietf:params:oauth:grant-type:device_code",
+  });
+
+  return await client.send(command);
+}
+
+export { registerClient, authorizeDevice, createToken };

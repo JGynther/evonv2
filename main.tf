@@ -61,3 +61,8 @@ module "cdn" {
   source              = "./services/cdn"
   acm-certificate-arn = data.aws_acm_certificate.evon-certificate.arn
 }
+
+module "mordor" {
+  source = "./services/mordor"
+  //acm-certificate-arn = data.aws_acm_certificate.evon-certificate.arn
+}
