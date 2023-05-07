@@ -7,6 +7,7 @@ variable "iam" {}
 variable "service" {}
 variable "apigw" {}
 variable "route" {}
+variable "env" { default = {} }
 
 data "archive_file" "archive" {
   source_file = "${var.path}/build/${var.name}.${var.filetype}"
@@ -22,6 +23,10 @@ resource "aws_lambda_function" "function" {
   runtime          = var.runtime
   architectures    = ["arm64"]
   role             = var.iam.arn
+
+  environment {
+    variables = var.env
+  }
 
   tags = {
     service = var.service
