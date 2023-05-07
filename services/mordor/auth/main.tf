@@ -6,6 +6,10 @@ resource "aws_apigatewayv2_api" "mordor-auth-apigw" {
   }
 }
 
+output "mordor-auth-apigw" {
+  value = aws_apigatewayv2_api.mordor-auth-apigw
+}
+
 resource "aws_apigatewayv2_stage" "default" {
   api_id      = aws_apigatewayv2_api.mordor-auth-apigw.id
   name        = "$default"
@@ -19,7 +23,7 @@ module "registerClient" {
   iam     = aws_iam_role.empty-lambda-role
   service = "mordor-auth"
   apigw   = aws_apigatewayv2_api.mordor-auth-apigw
-  route   = "GET /register"
+  route   = "GET /auth/register"
 }
 
 module "authorizeDevice" {
@@ -29,7 +33,7 @@ module "authorizeDevice" {
   iam     = aws_iam_role.empty-lambda-role
   service = "mordor-auth"
   apigw   = aws_apigatewayv2_api.mordor-auth-apigw
-  route   = "POST /device"
+  route   = "POST /auth/device"
 }
 
 module "createToken" {
@@ -39,6 +43,6 @@ module "createToken" {
   iam     = aws_iam_role.empty-lambda-role
   service = "mordor-auth"
   apigw   = aws_apigatewayv2_api.mordor-auth-apigw
-  route   = "POST /token"
+  route   = "POST /auth/token"
 }
 
