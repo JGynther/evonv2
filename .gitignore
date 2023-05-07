@@ -11,3 +11,6 @@ terraform.tfstate.backup
 
 # Build directories
 build
+
+# ENV
+.env

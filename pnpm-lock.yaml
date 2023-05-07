@@ -89,6 +89,9 @@ importers:
       '@types/node':
         specifier: ^18.11.19
         version: 18.11.19
+      dotenv:
+        specifier: ^16.0.3
+        version: 16.0.3
       esbuild:
         specifier: ^0.17.5
         version: 0.17.5
@@ -130,7 +133,7 @@ importers:
         version: 5.0.4
       vite:
         specifier: ^4.2.0
-        version: 4.2.1(@types/node@18.11.19)
+        version: 4.2.1
 
   services/stock-platform/backend:
     dependencies:
@@ -2164,7 +2167,7 @@ packages:
       svelte: 3.58.0
       tiny-glob: 0.2.9
       undici: 5.20.0
-      vite: 4.2.1(@types/node@18.11.19)
+      vite: 4.2.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2210,7 +2213,7 @@ packages:
       magic-string: 0.30.0
       svelte: 3.58.0
       svelte-hmr: 0.15.1(svelte@3.58.0)
-      vite: 4.2.1(@types/node@18.11.19)
+      vite: 4.2.1
       vitefu: 0.2.4(vite@4.2.1)
     transitivePeerDependencies:
       - supports-color
@@ -2545,6 +2548,11 @@ packages:
 
   /dlv@1.1.3:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
+    dev: true
+
+  /dotenv@16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
     dev: true
 
   /electron-to-chromium@1.4.360:
@@ -3544,7 +3552,7 @@ packages:
       - terser
     dev: true
 
-  /vite@4.2.1(@types/node@18.11.19):
+  /vite@4.2.1:
     resolution: {integrity: sha512-7MKhqdy0ISo4wnvwtqZkjke6XN4taqQ2TBaTccLIpOKv7Vp2h4Y+NpmWCnGDeSvvn45KxvWgGyb0MkHvY1vgbg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -3569,7 +3577,6 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.11.19
       esbuild: 0.17.5
       postcss: 8.4.21
       resolve: 1.22.2
@@ -3619,7 +3626,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.2.1(@types/node@18.11.19)
+      vite: 4.2.1
     dev: true
 
   /vitefu@0.2.4(vite@4.3.0):
