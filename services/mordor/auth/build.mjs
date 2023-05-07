@@ -1,7 +1,12 @@
 import { build } from "esbuild";
 
 await build({
-  entryPoints: ["src/authorizeDevice.ts", "src/createToken.ts", "src/registerClient.ts"],
+  entryPoints: [
+    "src/authorizeDevice.ts",
+    "src/createToken.ts",
+    "src/registerClient.ts",
+    "src/getRoleCredentials.ts",
+  ],
   external: ["@aws-sdk/*"],
   bundle: true,
   minify: true,
