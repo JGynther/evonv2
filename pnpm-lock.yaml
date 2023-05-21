@@ -47,6 +47,13 @@ importers:
         version: 4.9.5
 
   services/mordor/app:
+    dependencies:
+      '@aws-sdk/client-dynamodb':
+        specifier: ^3.264.0
+        version: 3.264.0
+      '@aws-sdk/lib-dynamodb':
+        specifier: ^3.303.0
+        version: 3.303.0(@aws-sdk/client-dynamodb@3.264.0)(@aws-sdk/smithy-client@3.316.0)(@aws-sdk/types@3.310.0)
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^2.0.0
