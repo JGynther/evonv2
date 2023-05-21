@@ -49,4 +49,8 @@ async function getCredentials(clientInfo: any, authorizationInfo: any) {
   return credentials;
 }
 
-export { getClientInfo, authorizeDevice, getCredentials, checkForLocalCredentials };
+function logout() {
+  localStorage.removeItem("credentials");
+}
+
+export { getClientInfo, authorizeDevice, getCredentials, checkForLocalCredentials, logout };

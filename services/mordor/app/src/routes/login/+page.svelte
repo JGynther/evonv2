@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
+  import { auth } from "../store";
 
   import {
     getClientInfo,
@@ -9,7 +10,6 @@
     checkForLocalCredentials,
   } from "$lib/auth";
 
-  let credentials: Record<string, unknown>;
   let url: string;
   let state = "Checking client.";
 
@@ -21,8 +21,9 @@
 
     if (localCredentials) {
       state = "Redirecting";
-      credentials = localCredentials;
-      return localCredentials;
+      auth.set(localCredentials);
+      goto("/", { replaceState: true });
+      return;
     }
 
     state = "Starting authorization flow";
@@ -30,9 +31,11 @@
     url = authorization.verificationUriComplete;
 
     state = "Waiting for authentication";
-    credentials = await getCredentials(client, authorization);
+    const credentials = await getCredentials(client, authorization);
 
     state = "Redirecting";
+    auth.set(credentials);
+    goto("/", { replaceState: true });
   });
 </script>
 
