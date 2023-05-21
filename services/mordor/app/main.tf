@@ -36,6 +36,23 @@ resource "aws_s3_bucket_acl" "acl" {
   acl        = "public-read"
 }
 
+resource "aws_s3_bucket_policy" "allow-cloudfront" {
+  bucket = aws_s3_bucket.website.id
+  policy = jsonencode(
+    {
+      "Version" : "2012-10-17",
+      "Statement" : [
+        {
+          "Action" : "s3:GetObject",
+          "Effect" : "Allow",
+          "Principal" : "*",
+          "Resource" : "${aws_s3_bucket.website.arn}/*"
+        }
+      ]
+    }
+  )
+}
+
 output "mordor-website" {
   value = aws_s3_bucket_website_configuration.website
 }
