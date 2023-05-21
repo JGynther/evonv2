@@ -3,6 +3,7 @@
 
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
+  import { page } from "$app/stores";
 
   import { auth } from "./store";
   import { logout } from "$lib/auth";
@@ -28,10 +29,12 @@
   </header>
 
   <div class="container max-w-screen-md px-5 flex-grow">
-    <slot />
+    {#if isAuthenticated || $page.route.id === "/login"}
+      <slot />
+    {/if}
   </div>
 
-  <footer class="border-t w-full px-10 py-6">
+  <footer class="border-t w-full px-10 py-6 mt-10">
     For authorized use only. © 2023 Evon Capital Oy Ab
   </footer>
 </div>
