@@ -35,3 +35,7 @@ resource "aws_dynamodb_table" "stock-subscriptions" {
     service = "stock-platform"
   }
 }
+
+output "stock-subscriptions-table" {
+  value = aws_dynamodb_table.stock-subscriptions
+}
