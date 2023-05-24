@@ -67,8 +67,13 @@
 
 {#if config.active}
   <div class="space-y-5 mb-14">
+    {#if config.banner}
+      <img src={config.banner} alt="Banner" class="mb-10" />
+    {/if}
     <h1 class="text-4xl font-serif mb-10">{config.title}</h1>
-    <p class="text-white text-opacity-80">{config.description}</p>
+    <p class="text-white text-opacity-80 whitespace-pre-wrap">
+      {config.description}
+    </p>
     <div
       class="border border-neutral-700 bg-neutral-800 px-5 py-3 rounded text-white text-opacity-80"
     >
