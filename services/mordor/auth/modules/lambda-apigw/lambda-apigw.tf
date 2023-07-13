@@ -24,8 +24,9 @@ resource "aws_lambda_function" "function" {
   architectures    = ["arm64"]
   role             = var.iam.arn
 
-  environment {
-    variables = var.env
+  dynamic "environment" {
+    for_each = length(keys(var.env)) == 0 ? [] : [true] // If env has keys, set environment block
+    content { variables = var.env }
   }
 
   tags = {
