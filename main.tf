@@ -51,11 +51,11 @@ module "go-link" {
   acm-certificate-arn = data.aws_acm_certificate.evon-certificate.arn
 }
 
-module "stock-platform" {
+/*module "stock-platform" {
   source              = "./services/stock-platform"
   acm-certificate-arn = data.aws_acm_certificate.evon-certificate.arn
   email-lambda-arn    = module.email.email-lambda-arn
-}
+}*/
 
 module "cdn" {
   source              = "./services/cdn"
