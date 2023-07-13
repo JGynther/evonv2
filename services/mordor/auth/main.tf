@@ -21,7 +21,7 @@ resource "aws_apigatewayv2_stage" "default" {
 }
 
 module "registerClient" {
-  source  = "./modules/lambda-apigw"
+  source  = "../../../lib/modules/lambda-apigw"
   name    = "registerClient"
   path    = "services/mordor/auth"
   iam     = aws_iam_role.empty-lambda-role
@@ -31,7 +31,7 @@ module "registerClient" {
 }
 
 module "authorizeDevice" {
-  source  = "./modules/lambda-apigw"
+  source  = "../../../lib/modules/lambda-apigw"
   name    = "authorizeDevice"
   path    = "services/mordor/auth"
   iam     = aws_iam_role.empty-lambda-role
@@ -44,7 +44,7 @@ module "authorizeDevice" {
 }
 
 module "createToken" {
-  source  = "./modules/lambda-apigw"
+  source  = "../../../lib/modules/lambda-apigw"
   name    = "createToken"
   path    = "services/mordor/auth"
   iam     = aws_iam_role.empty-lambda-role
@@ -54,7 +54,7 @@ module "createToken" {
 }
 
 module "getRoleCredentials" {
-  source  = "./modules/lambda-apigw"
+  source  = "../../../lib/modules/lambda-apigw"
   name    = "getRoleCredentials"
   path    = "services/mordor/auth"
   iam     = aws_iam_role.empty-lambda-role
