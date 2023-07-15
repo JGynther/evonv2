@@ -22,8 +22,5 @@ const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyRe
 
   return result.Item;
 };
-/*
-process.env.TABLE = "blog";
-console.log(await handler({ pathParameters: { id: "Listaamattomien_hankintastrategia_23" } }));
-*/
+
 export { handler };
