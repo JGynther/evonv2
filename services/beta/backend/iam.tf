@@ -35,7 +35,7 @@ resource "aws_iam_role_policy" "lambda-beta-blog" {
             "dynamodb:GetItem"
           ],
           "Effect" : "Allow",
-          "Resource" : "${aws_dynamodb_table.blog-table.arn}"
+          "Resource" : ["${aws_dynamodb_table.blog-table.arn}", "${aws_dynamodb_table.author-table.arn}"]
         }
       ]
     }
