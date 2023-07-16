@@ -11,7 +11,7 @@
 
 {#each blogs as blog}
     <div>
-        <h2>{blog.title}</h2>
+        <h2 class="text-xl">{blog.title}</h2>
         <p>{blog.content.slice(0, 100)}</p>
     </div>
 {/each}
