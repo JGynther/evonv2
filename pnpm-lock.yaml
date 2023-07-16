@@ -37,6 +37,9 @@ importers:
       '@aws-sdk/client-dynamodb':
         specifier: ^3.264.0
         version: 3.264.0
+      '@aws-sdk/util-dynamodb':
+        specifier: ^3.370.0
+        version: 3.370.0
     devDependencies:
       '@types/aws-lambda':
         specifier: ^8.10.110
@@ -1707,6 +1710,13 @@ packages:
 
   /@aws-sdk/util-dynamodb@3.303.0:
     resolution: {integrity: sha512-OTKcww7nY6PTm2N5KH/nhMXgEnX4nU3PyWpcZ00bi1rY2gKODIoDewBgPbc9jB1No9ABTELnP/NUknle3S386A==}
+    engines: {node: '>=14.0.0'}
+    dependencies:
+      tslib: 2.5.0
+    dev: false
+
+  /@aws-sdk/util-dynamodb@3.370.0:
+    resolution: {integrity: sha512-qqCm5avefrBnqXjSmw7g9Rzz3KpYDUlQwMxSQwhjaofXggo8khx/8wbcN9V8XzF1K/4gJCMymxzCkFWWq964HA==}
     engines: {node: '>=14.0.0'}
     dependencies:
       tslib: 2.5.0

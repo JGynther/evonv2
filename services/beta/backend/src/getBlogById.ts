@@ -1,5 +1,6 @@
 import { APIGatewayProxyEventV2, APIGatewayProxyResultV2 } from "aws-lambda";
 import { DynamoDBClient, GetItemCommand } from "@aws-sdk/client-dynamodb";
+import { unmarshall } from "@aws-sdk/util-dynamodb";
 
 const client = new DynamoDBClient({ region: process.env.AWS_REGION });
 
@@ -20,7 +21,7 @@ const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyRe
 
   if (result.Item === undefined) return { statusCode: 404 };
 
-  return result.Item;
+  return unmarshall(result.Item);
 };
 
 export { handler };
