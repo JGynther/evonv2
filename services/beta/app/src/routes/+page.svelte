@@ -1,14 +1,6 @@
 <script lang="ts">
-    import { getAllBlogs } from "$lib/blog";
+    import { getAllBlogs, type Blog } from "$lib/blog";
     import { onMount } from "svelte";
-
-    type Blog = {
-        content: string;
-        title: string;
-        createdAt: string;
-        authors: string[];
-        id: string;
-    };
 
     let blogs: Blog[] = [];
 
