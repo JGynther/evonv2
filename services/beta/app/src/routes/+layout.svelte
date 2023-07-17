@@ -6,7 +6,8 @@
     <header
         class="sticky top-0 z-10 mb-12 bg-neutral-900 border-b border-neutral-700"
     >
-        <div
+        <a
+            href="/"
             class="py-5 px-14 font-serif tracking-widest text-xl flex items-center"
         >
             <img
@@ -16,7 +17,7 @@
                 class="mr-4"
             />
             EVON CAPITAL
-        </div>
+        </a>
     </header>
 
     <div class="flex-grow mx-auto px-5">
