@@ -23,13 +23,15 @@
         <h4>{new Date(blog.createdAt).toLocaleDateString()}</h4>
         <h1>{blog.title}</h1>
         {#if authors}
-            <div class="bg-neutral-800 px-5 py-3 space-y-3 text-sm">
+            <div
+                class="bg-neutral-800 px-5 py-3 space-y-3 text-sm flex flex-col"
+            >
                 {#each authors as author}
-                    <div>
+                    <a href={`/author/${author.id}`}>
                         {author.name}
                         <br />
                         {author.description}
-                    </div>
+                    </a>
                 {/each}
             </div>
         {/if}
