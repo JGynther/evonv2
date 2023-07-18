@@ -11,7 +11,7 @@
             class="py-5 px-14 font-serif tracking-widest text-xl flex items-center"
         >
             <img
-                src="logo.webp"
+                src="/logo.webp"
                 alt="Evon Capital logo"
                 width={60}
                 class="mr-4"
