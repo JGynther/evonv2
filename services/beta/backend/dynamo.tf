@@ -29,3 +29,11 @@ resource "aws_dynamodb_table" "author-table" {
     service = "beta"
   }
 }
+
+output "author-table-arn" {
+  value = aws_dynamodb_table.author-table.arn
+}
+
+output "blog-table-arn" {
+  value = aws_dynamodb_table.blog-table.arn
+}

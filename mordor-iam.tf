@@ -8,11 +8,11 @@ resource "aws_iam_policy" "mordor-user-policy" {
           "Action" : [
             "dynamodb:DescribeTable",
             "dynamodb:Query",
-            "dynamodb:Scan"
-          ]
-          "Effect" : "Deny",
-          //"Resource" : "${module.stock-platform.stock-subscriptions-table.arn}"
-          "Resource" : "*"
+            "dynamodb:Scan",
+            "dynamodb:GetItem"
+          ],
+          "Effect" : "Allow",
+          "Resource" : [module.beta.blog-table-arn, module.beta.author-table-arn]
         }
       ]
     }
