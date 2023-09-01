@@ -4,7 +4,7 @@ const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 async function getClientInfo() {
   const info = JSON.parse(localStorage.getItem("device") ?? "{}");
-  const isExpired = Date.now() < info?.clientSecretExpiresAt;
+  const isExpired = Date.now() > info?.clientSecretExpiresAt * 1000; // clientSecretExpiresAt is in seconds, not milliseconds
 
   if (info?.clientId && !isExpired) return info;
 
@@ -19,7 +19,9 @@ async function authorizeDevice(clientInfo: any) {
 }
 
 function checkForLocalCredentials() {
-  const localCredentials = JSON.parse(localStorage.getItem("credentials") ?? "{}");
+  const localCredentials = JSON.parse(
+    localStorage.getItem("credentials") ?? "{}"
+  );
   const isExpired = Date.now() > localCredentials?.roleCredentials?.expiration;
   if (isExpired || !localCredentials?.roleCredentials) return false;
   return localCredentials;
@@ -53,4 +55,10 @@ function logout() {
   localStorage.removeItem("credentials");
 }
 
-export { getClientInfo, authorizeDevice, getCredentials, checkForLocalCredentials, logout };
+export {
+  getClientInfo,
+  authorizeDevice,
+  getCredentials,
+  checkForLocalCredentials,
+  logout,
+};
