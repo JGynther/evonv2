@@ -9,7 +9,9 @@ resource "aws_iam_policy" "mordor-user-policy" {
             "dynamodb:DescribeTable",
             "dynamodb:Query",
             "dynamodb:Scan",
-            "dynamodb:GetItem"
+            "dynamodb:GetItem",
+            "dynamodb:UpdateItem",
+            "dynamodb:PutItem"
           ],
           "Effect" : "Allow",
           "Resource" : [module.beta.blog-table-arn, module.beta.author-table-arn]
