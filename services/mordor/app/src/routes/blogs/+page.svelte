@@ -17,6 +17,12 @@
 </script>
 
 <div class="flex flex-col space-y-5">
+  <a
+    href="/blogs/create"
+    class="bg-indigo-500 hover:bg-indigo-700 transition px-5 py-2 mb-10 rounded text-white text-center"
+  >
+    Luo uusi blogi
+  </a>
   {#each data as item}
     <a
       href={`/blogs/${item.id}`}

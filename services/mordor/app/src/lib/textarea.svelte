@@ -3,7 +3,7 @@
 
   export let content: string;
   export let id: string;
-  export let didEdit: boolean;
+  export let didEdit: boolean | undefined = undefined;
   export let required = false;
 
   let textarea: HTMLTextAreaElement;
