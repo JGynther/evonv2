@@ -10,6 +10,19 @@
 
   $: isAuthenticated = $auth ? true : false;
 
+  function createBreadcrumbs(parts: string[]) {
+    let crumbs = parts[1] ? ["/", "/" + parts[1]] : ["/"];
+
+    for (let i = 2; i < parts.length; ++i) {
+      crumbs.push(crumbs[i - 1] + "/" + parts[i]);
+    }
+
+    return crumbs;
+  }
+
+  let crumbs: string[] = [];
+  $: crumbs = createBreadcrumbs($page.url.pathname.split("/"));
+
   onMount(() => {
     if (!isAuthenticated) goto("/login", { replaceState: true });
   });
@@ -27,6 +40,14 @@
       >
     {/if}
   </header>
+
+  <div class="w-full px-10 mb-10 opacity-80 tracking-wider">
+    {#each crumbs as crumb}
+      <a href={crumb}>
+        {crumb} >
+      </a>
+    {/each}
+  </div>
 
   <div class="container max-w-screen-md px-5 flex-grow">
     {#if isAuthenticated || $page.route.id === "/login"}
