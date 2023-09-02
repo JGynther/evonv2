@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import { page } from "$app/stores";
   import { PUBLIC_BLOG_TABLE } from "$env/static/public";
+  import Textarea from "$lib/textarea.svelte";
 
   let data: Record<string, any>;
   let didEdit = false;
@@ -91,14 +92,7 @@
           >CommonMark</a
         > -markdown tyylillä formatoitua tekstiä
       </span>
-      <div
-        id="content"
-        class="border-2 rounded p-5 my-2 whitespace-pre-wrap"
-        contenteditable="true"
-        role="textbox"
-        bind:textContent={content}
-        on:focus={() => (didEdit = true)}
-      />
+      <Textarea id="content" {content} {didEdit} />
     </div>
 
     {#if didEdit}
@@ -107,12 +101,14 @@
       </p>
     {/if}
 
-    <button
-      disabled={!didEdit}
-      on:click={save}
-      class="w-full bg-indigo-500 hover:bg-indigo-700 disabled:opacity-60 transition px-3 py-2 rounded text-white"
-    >
-      Tallenna
-    </button>
+    <div>
+      <button
+        disabled={!didEdit}
+        on:click={save}
+        class="w-full bg-indigo-500 enabled:hover:bg-indigo-700 disabled:opacity-60 transition px-3 py-2 mt-5 rounded text-white"
+      >
+        Tallenna
+      </button>
+    </div>
   </div>
 {/if}
