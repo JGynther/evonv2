@@ -1,2 +1,2 @@
-packges:
-  - "services/*"
+packages:
+  - "services/**"

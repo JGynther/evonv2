@@ -17,3 +17,6 @@ build
 
 # CSV files
 *.csv
+
+# Turbo
+.turbo
