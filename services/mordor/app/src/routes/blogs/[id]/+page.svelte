@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { client } from "../../clients";
+  import { client, Audit } from "../../clients";
   import { onMount } from "svelte";
   import { page } from "$app/stores";
   import { PUBLIC_BLOG_TABLE } from "$env/static/public";
@@ -27,8 +27,10 @@
       },
     });
 
-    if (result.$metadata.httpStatusCode !== 200)
-      return alert("Tallentaminen ei onnistu"); // TODO: better error messaging
+    $Audit?.event({
+      eventName: "updateBlog",
+      resource: { TableName: PUBLIC_BLOG_TABLE, BlogID: $page.params.id },
+    });
 
     didEdit = false;
   }
@@ -92,7 +94,7 @@
           >CommonMark</a
         > -markdown tyylillä formatoitua tekstiä
       </span>
-      <Textarea id="content" {content} {didEdit} />
+      <Textarea id="content" bind:content bind:didEdit />
     </div>
 
     {#if didEdit}

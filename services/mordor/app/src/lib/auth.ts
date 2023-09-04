@@ -1,4 +1,10 @@
 import { get, post } from "$lib/fetch";
+import {
+  STSClient,
+  GetCallerIdentityCommand,
+  type STSClientConfig,
+} from "@aws-sdk/client-sts";
+import { PUBLIC_AWS_REGION } from "$env/static/public";
 
 const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
@@ -27,6 +33,15 @@ function checkForLocalCredentials() {
   return localCredentials;
 }
 
+async function getUserDetails(roleCredentials: any) {
+  const sts = new STSClient({
+    region: PUBLIC_AWS_REGION,
+    credentials: roleCredentials,
+  });
+
+  return await sts.send(new GetCallerIdentityCommand({}));
+}
+
 async function getCredentials(clientInfo: any, authorizationInfo: any) {
   let token;
   let count = 0;
@@ -40,15 +55,17 @@ async function getCredentials(clientInfo: any, authorizationInfo: any) {
     if (result.$metadata.httpStatusCode === 200) token = result;
 
     ++count;
-    await sleep(5000);
+    await sleep(1000);
   }
 
   const credentials = await post("/auth/credentials", {
     token: token.accessToken,
   });
 
-  localStorage.setItem("credentials", JSON.stringify(credentials));
-  return credentials;
+  const User = await getUserDetails(credentials.roleCredentials);
+
+  localStorage.setItem("credentials", JSON.stringify({ ...credentials, User }));
+  return { ...credentials, User };
 }
 
 function logout() {

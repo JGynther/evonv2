@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { client } from "../../clients";
+  import { client, Audit } from "../../clients";
   import { PUBLIC_BLOG_TABLE } from "$env/static/public";
   import Textarea from "$lib/textarea.svelte";
   import { goto } from "$app/navigation";
@@ -29,6 +29,11 @@
       },
       TableName: PUBLIC_BLOG_TABLE,
       ConditionExpression: "attribute_not_exists(id)",
+    });
+
+    $Audit?.event({
+      eventName: "createBlog",
+      resource: { TableName: PUBLIC_BLOG_TABLE, BlogID: id },
     });
 
     goto(`/blogs/${id}`);

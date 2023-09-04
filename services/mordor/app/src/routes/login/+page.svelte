@@ -2,8 +2,6 @@
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
   import { auth } from "../store";
-  import { STSClient, GetCallerIdentityCommand } from "@aws-sdk/client-sts";
-  import { PUBLIC_AWS_REGION } from "$env/static/public";
   import { Audit } from "../clients";
 
   import {
@@ -39,15 +37,6 @@
     state = "Redirecting";
     auth.set(credentials);
 
-    const sts = new STSClient({
-      region: PUBLIC_AWS_REGION,
-      credentials: $auth.roleCredentials,
-    });
-
-    const User = await sts.send(new GetCallerIdentityCommand({}));
-    auth.update((x) => {
-      return { ...x, User };
-    });
     $Audit?.event({ eventName: "login" });
 
     goto("/", { replaceState: true });

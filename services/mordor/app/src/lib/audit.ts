@@ -1,9 +1,10 @@
 import type { DynamoDBDocument } from "@aws-sdk/lib-dynamodb";
 import { PUBLIC_AUDIT_TABLE } from "$env/static/public";
+import { dev } from "$app/environment";
 
 type AuditEvent = {
   eventName: string;
-  resource?: string;
+  resource?: string | Record<string, unknown>;
 };
 
 type AuditInterface = {
@@ -21,6 +22,7 @@ function createAuditer(
 ): AuditInterface {
   return {
     event: (event) => {
+      if (dev) return console.log("[DEV] Audit: ", event);
       const { eventName, resource } = event;
       const { UserId, Arn } = user;
       client.put({
