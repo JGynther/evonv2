@@ -120,6 +120,9 @@ importers:
       '@aws-sdk/client-dynamodb':
         specifier: ^3.405.0
         version: 3.405.0
+      '@aws-sdk/client-sts':
+        specifier: ^3.405.0
+        version: 3.405.0
       '@aws-sdk/lib-dynamodb':
         specifier: ^3.405.0
         version: 3.405.0(@aws-sdk/client-dynamodb@3.405.0)

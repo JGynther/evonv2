@@ -2,6 +2,9 @@
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
   import { auth } from "../store";
+  import { STSClient, GetCallerIdentityCommand } from "@aws-sdk/client-sts";
+  import { PUBLIC_AWS_REGION } from "$env/static/public";
+  import { Audit } from "../clients";
 
   import {
     getClientInfo,
@@ -35,12 +38,24 @@
 
     state = "Redirecting";
     auth.set(credentials);
+
+    const sts = new STSClient({
+      region: PUBLIC_AWS_REGION,
+      credentials: $auth.roleCredentials,
+    });
+
+    const User = await sts.send(new GetCallerIdentityCommand({}));
+    auth.update((x) => {
+      return { ...x, User };
+    });
+    $Audit?.event({ eventName: "login" });
+
     goto("/", { replaceState: true });
   });
 </script>
 
 <div class="space-y-5">
-  <h1 class="text-xl font-bold pb-5">Mordor system authentication</h1>
+  <h1 class="text-xl font-bold pb-5">Mordor authentication</h1>
   <p>{state}</p>
 
   {#if url}

@@ -15,6 +15,13 @@ resource "aws_iam_policy" "mordor-user-policy" {
           ],
           "Effect" : "Allow",
           "Resource" : [module.beta.blog-table-arn, module.beta.author-table-arn]
+        },
+        {
+          "Action" : [
+            "dynamodb:PutItem"
+          ]
+          "Effect" : "Allow",
+          "Resource" : [module.mordor.audit-table-arn]
         }
       ]
     }
