@@ -46,7 +46,7 @@ async function getCredentials(clientInfo: any, authorizationInfo: any) {
   let token;
   let count = 0;
 
-  while (!token && count < 30) {
+  while (!token && count < 60) {
     const result = await post("/auth/token", {
       clientInfo,
       authorizationInfo,
