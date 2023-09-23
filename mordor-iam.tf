@@ -14,7 +14,7 @@ resource "aws_iam_policy" "mordor-user-policy" {
             "dynamodb:PutItem"
           ],
           "Effect" : "Allow",
-          "Resource" : [module.beta.blog-table-arn, module.beta.author-table-arn]
+          "Resource" : [module.beta.blog-table-arn, module.beta.author-table-arn, module.beta.content-table-arn]
         },
         {
           "Action" : [
