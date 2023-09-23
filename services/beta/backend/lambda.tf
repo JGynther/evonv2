@@ -36,3 +36,16 @@ module "getAuthorById" {
     TABLE = aws_dynamodb_table.author-table.name
   }
 }
+
+module "getPageBySlug" {
+  source  = "../../../lib/modules/lambda-apigw"
+  name    = "getPageBySlug"
+  path    = "services/beta/backend"
+  iam     = aws_iam_role.lambda-beta-blog
+  service = "beta"
+  apigw   = aws_apigatewayv2_api.beta-apigw
+  route   = "GET /api/page/{slug}"
+  env = {
+    TABLE = aws_dynamodb_table.content-table.name
+  }
+}

@@ -1,7 +1,12 @@
 import { build } from "esbuild";
 
 await build({
-  entryPoints: ["src/getBlogById.ts", "src/listAllBlogs.ts", "src/getAuthorById.ts"],
+  entryPoints: [
+    "src/getBlogById.ts",
+    "src/listAllBlogs.ts",
+    "src/getAuthorById.ts",
+    "src/getPageBySlug.ts",
+  ],
   external: ["@aws-sdk/*"],
   bundle: true,
   minify: true,
